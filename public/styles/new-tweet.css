@@ -18,15 +18,15 @@
   padding-top: 20px;
 }
 
-#tweet-button {
-  display: flex;
-  background-color: #4056A1;
-  color: #f4f1ec;
-}
-
 .tweet-button-count {
   display: flex;
   font-family: "Bungee", sans-serif;
   justify-content: space-between;
   padding-top: 10px;
+}
+
+.tweet-button-count > button {
+  display: flex;
+  background-color: #4056A1;
+  color: #f4f1ec;
 }
