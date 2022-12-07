@@ -16,13 +16,31 @@ const tweetData = {
       },
     "created_at": 1461116232227
 }
- 
+
 const createTweetElement = function (data) {
- 
+  return `
+  <article class="tweet">
+  <header>
+  <div class="user">
+  <img src="${data.user.avatars}">
+  ${data.user.name}
+  </div>
+  ${data.user.handle}
+  </header>
+  <p class="tweet-content">${data.content.text}</p>
+  <footer>
+  <p>${data.created_at}</p>
+  <div class="social-buttons">
+  <i class="fa-solid fa-flag"></i>
+  <i class="fa-solid fa-retweet"></i>
+  <i class="fa-solid fa-heart"></i>
+  </div>
+  </footer>
+  </article>
+  `;
 };
 
-const $tweet = createTweetElement(tweetData);
-
-// Test / driver code (temporary)
-console.log($tweet); // to see what it looks like
-$('#tweets-timeline').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+$(document).ready(function () {
+  const $tweet = createTweetElement(tweetData);
+  $('#tweet-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+});
