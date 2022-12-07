@@ -4,40 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
-//takes in array of tweet objects & appends to #tweet-container
-const renderTweets = function (tweets) {
-  for (const tweet of tweets) {
-    const singleTweet = createTweetElement(tweet);
-    $('#tweet-container').append(singleTweet);
-  }
-}
 
 //takes in tweet object returning a tweet<article> element
 const createTweetElement = function (tweets) {
@@ -52,7 +18,7 @@ const createTweetElement = function (tweets) {
   </header>
   <p class="tweet-content">${tweets.content.text}</p>
   <footer>
-  <p>${tweets.created_at}</p>
+  <p>${timeago.format(tweets.created_at)}</p>
   <div class="social-buttons">
   <i class="fa-solid fa-flag"></i>
   <i class="fa-solid fa-retweet"></i>
@@ -63,6 +29,26 @@ const createTweetElement = function (tweets) {
   `;
   return $tweet;
 };
+
+//takes in array of tweet objects & appends to #tweet-container
+const renderTweets = function (tweets) {
+  for (const tweet of tweets) {
+    const singleTweet = createTweetElement(tweet);
+    $('#tweet-container').append(singleTweet);
+  }
+};
+
+const loadTweets = function () {
+  $.ajax({
+    method: 'GET',
+    url: '/tweets',
+    dataType: 'JSON'
+  })
+    .then((tweet) => renderTweets(tweet))
+    .catch((err) => { console.log(err) })
+};
+
+loadTweets();
 
 $(document).ready(function () {
 
@@ -84,5 +70,5 @@ $(document).ready(function () {
       
   });
 
-  renderTweets(data);
+
 });
