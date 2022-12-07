@@ -65,5 +65,11 @@ const createTweetElement = function (tweets) {
 };
 
 $(document).ready(function () {
+
+  $('#submit-tweet').submit((event) => {
+    event.preventDefault();
+    console.log('You clicked the TWEET button!');
+  });
+
   renderTweets(data);
 });
