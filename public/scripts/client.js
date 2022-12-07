@@ -4,32 +4,55 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// Test / driver code (temporary). Eventually will get this from the server.
-const tweetData = {
+// Fake data taken from initial-tweets.json
+const data = [
+  {
     "user": {
       "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
+      "avatars": "https://i.imgur.com/73hZDYK.png"
+      ,
+      "handle": "@SirIsaac"
+    },
     "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
+      "text": "If I have seen further it is by standing on the shoulders of giants"
+    },
     "created_at": 1461116232227
+  },
+  {
+    "user": {
+      "name": "Descartes",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@rd"
+    },
+    "content": {
+      "text": "Je pense , donc je suis"
+    },
+    "created_at": 1461113959088
+  }
+]
+
+//takes in array of tweet objects & appends to #tweet-container
+const renderTweets = function (tweets) {
+  for (const tweet of tweets) {
+    const singleTweet = createTweetElement(tweet);
+    $('#tweet-container').append(singleTweet);
+  }
 }
 
-const createTweetElement = function (data) {
-  return `
+//takes in tweet object returning a tweet<article> element
+const createTweetElement = function (tweets) {
+  let $tweet = `
   <article class="tweet">
   <header>
   <div class="user">
-  <img src="${data.user.avatars}">
-  ${data.user.name}
+  <img src="${tweets.user.avatars}">
+  ${tweets.user.name}
   </div>
-  ${data.user.handle}
+  ${tweets.user.handle}
   </header>
-  <p class="tweet-content">${data.content.text}</p>
+  <p class="tweet-content">${tweets.content.text}</p>
   <footer>
-  <p>${data.created_at}</p>
+  <p>${tweets.created_at}</p>
   <div class="social-buttons">
   <i class="fa-solid fa-flag"></i>
   <i class="fa-solid fa-retweet"></i>
@@ -38,9 +61,9 @@ const createTweetElement = function (data) {
   </footer>
   </article>
   `;
+  return $tweet;
 };
 
 $(document).ready(function () {
-  const $tweet = createTweetElement(tweetData);
-  $('#tweet-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  renderTweets(data);
 });
