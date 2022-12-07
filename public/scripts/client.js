@@ -66,9 +66,22 @@ const createTweetElement = function (tweets) {
 
 $(document).ready(function () {
 
-  $('#submit-tweet').submit((event) => {
+  $('#submit-tweet').submit(function(event) {
     event.preventDefault();
     console.log('You clicked the TWEET button!');
+
+    $.ajax({
+      method: 'POST',
+      url: '/tweets',
+      data: $(this).serialize()
+    })
+      .then(() => {
+        console.log('Success! Correct handler request made!');
+      })
+      .catch((err) => {
+        console.log(err);
+    })
+      
   });
 
   renderTweets(data);
