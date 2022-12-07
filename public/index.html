@@ -54,6 +54,7 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
+      <!-- Add new tweets -->
       <section class="new-tweet">
         <form method="POST" action="/tweets/">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
@@ -62,6 +63,23 @@
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
+      </section>
+      <!-- Tweet timeline -->
+      <section class="tweet-timeline">
+        <article>
+          <header>
+            <img src="images/profile-hex.png">
+            Newton
+            @SirIsaac
+          </header>
+          <p>If I have seen further it is by standing on the shoulders of giants</p>
+          <footer>
+            10 days ago
+            <i class="fa-solid fa-flag"></i>
+            <i class="fa-solid fa-retweet"></i>
+            <i class="fa-solid fa-heart"></i>
+          </footer>
+        </article>
       </section>
     </main>
   </body>
