@@ -1,4 +1,4 @@
-.tweet-timeline {
+#tweet-container {
   display: flex;
   flex-direction: column;
   border: 4px solid black;
@@ -6,7 +6,7 @@
   margin: 50px;
 }
 
-.tweet-timeline img {
+#tweet-container img {
   width: 85px;
   margin: 10px;
 }
@@ -27,7 +27,7 @@
   color: rgba(173, 161, 161, 0.913);
 }
 
-.tweet-timeline header {
+#tweet-container header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,7 +37,7 @@
   font-size: larger;
 }
 
-.tweet-timeline footer {
+#tweet-container footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
