@@ -1,0 +1,4 @@
+.tweet-timeline {
+  display: flex;
+  border: 4px solid black;
+}
