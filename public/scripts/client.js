@@ -60,7 +60,7 @@ $(document).ready(function () {
       return alert('You cannot tweet nothing!')
     }
 
-    if ($(this).children('textarea').val().length) {
+    if ($(this).children('textarea').val().length > 140) {
       return alert('Tweet exceeds the maximum count!');
     }
 
