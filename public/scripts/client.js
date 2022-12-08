@@ -13,8 +13,10 @@ const createTweetElement = function (tweets) {
      <div class="user">
       <img src="${tweets.user.avatars}">
       ${tweets.user.name}
-     </div>
+      </div>
+      <div class="handle">
       ${tweets.user.handle}
+      </div>
     </header>
     <p class="tweet-content">${tweets.content.text}</p>
     <footer>
