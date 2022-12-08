@@ -56,6 +56,14 @@ $(document).ready(function () {
     event.preventDefault();
     console.log('You clicked the TWEET button!');
 
+    if (!$(this).children('textarea').val()) {
+      return alert('You cannot tweet nothing!')
+    }
+
+    if ($(this).children('textarea').val().length) {
+      return alert('Tweet exceeds the maximum count!');
+    }
+
     $.ajax({
       method: 'POST',
       url: '/tweets',
