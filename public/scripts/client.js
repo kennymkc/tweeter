@@ -9,22 +9,22 @@
 const createTweetElement = function (tweets) {
   let $tweet = `
   <article class="tweet">
-  <header>
-  <div class="user">
-  <img src="${tweets.user.avatars}">
-  ${tweets.user.name}
-  </div>
-  ${tweets.user.handle}
-  </header>
-  <p class="tweet-content">${tweets.content.text}</p>
-  <footer>
-  <p>${timeago.format(tweets.created_at)}</p>
-  <div class="social-buttons">
-  <i class="fa-solid fa-flag"></i>
-  <i class="fa-solid fa-retweet"></i>
-  <i class="fa-solid fa-heart"></i>
-  </div>
-  </footer>
+    <header>
+     <div class="user">
+      <img src="${tweets.user.avatars}">
+      ${tweets.user.name}
+     </div>
+      ${tweets.user.handle}
+    </header>
+    <p class="tweet-content">${tweets.content.text}</p>
+    <footer>
+      <p>${timeago.format(tweets.created_at)}</p>
+        <div class="social-buttons">
+          <i class="fa-solid fa-flag"></i>
+          <i class="fa-solid fa-retweet"></i>
+          <i class="fa-solid fa-heart"></i>
+        </div>
+    </footer>
   </article>
   `;
   return $tweet;
