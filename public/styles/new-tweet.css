@@ -25,10 +25,14 @@
   padding-top: 10px;
 }
 
-.tweet-button-count > button {
+.tweet-button {
   display: flex;
   background-color: #4056A1;
   color: #f4f1ec;
+}
+
+.tweet-button:hover {
+  border: 5px solid rgb(86, 116, 216);
 }
 
 .over-characters {
