@@ -66,11 +66,11 @@ $(document).ready(function () {
     console.log('You clicked the TWEET button!');
 
     if (!$('#tweet-text').val()) {
-      return alert('You cannot tweet nothing!');
+      return $('.error').text('❗❗❗ You cannot tweet nothing! ❗❗❗').show();
     }
 
     if ($('#tweet-text').val().length > 140) {
-      return alert('Tweet exceeds the maximum count!');
+      return $('.error').text('❗❗❗ Tweet exceeds the maximum count! ❗❗❗').show();
     }
 
     $.ajax({
@@ -92,6 +92,8 @@ $(document).ready(function () {
         $('#tweet-text').val('');
         //resets counter
         $('.counter').text(140);
+        //hide error message upon successful tweet
+        $('.error').hide();
       })
       .catch((err) => {
         console.log(err);
