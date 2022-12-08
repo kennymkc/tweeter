@@ -34,7 +34,7 @@ const createTweetElement = function (tweets) {
 const renderTweets = function (tweets) {
   for (const tweet of tweets) {
     const singleTweet = createTweetElement(tweet);
-    $('#tweet-container').append(singleTweet);
+    $('#tweet-container').prepend(singleTweet);
   }
 };
 
@@ -44,7 +44,7 @@ const loadTweets = function () {
     url: '/tweets',
     dataType: 'JSON'
   })
-    .then((tweet) => renderTweets(tweet.reverse()))
+    .then((tweet) => renderTweets(tweet))
     .catch((err) => { console.log(err) })
 };
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
     console.log('You clicked the TWEET button!');
 
     if (!$('#tweet-text').val()) {
-      return alert('You cannot tweet nothing!')
+      return alert('You cannot tweet nothing!');
     }
 
     if ($('#tweet-text').val().length > 140) {
@@ -69,8 +69,16 @@ $(document).ready(function () {
       url: '/tweets',
       data: $(this).serialize()
     })
+      //make get request immediately after post so page does not have to refresh
       .then(() => {
-        loadTweets();
+        $.ajax({
+          method: 'GET',
+          url: '/tweets',
+          dataType: 'JSON'
+        })
+          /*use renderTweets to get last obj in array and wrapped it in [] b/c renderTweets takes in an array before posting */
+          .then((tweet) => renderTweets([tweet[tweet.length - 1]]))
+          .catch((err) => { console.log(err) })
         //clear tweet textbox
         $('#tweet-text').val('');
         //resets counter
