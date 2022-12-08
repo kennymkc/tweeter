@@ -6,21 +6,28 @@
 
 
 //takes in tweet object returning a tweet<article> element
+
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = function (tweets) {
   let $tweet = `
   <article class="tweet">
     <header>
      <div class="user">
-      <img src="${tweets.user.avatars}">
-      ${tweets.user.name}
+      <img src="${(tweets.user.avatars)}">
+      ${escape(tweets.user.name)}
       </div>
       <div class="handle">
-      ${tweets.user.handle}
+      ${escape(tweets.user.handle)}
       </div>
     </header>
-    <p class="tweet-content">${tweets.content.text}</p>
+    <p class="tweet-content">${escape(tweets.content.text)}</p>
     <footer>
-      <p>${timeago.format(tweets.created_at)}</p>
+      <p>${escape(timeago.format(tweets.created_at))}</p>
         <div class="social-buttons">
           <i class="fa-solid fa-flag"></i>
           <i class="fa-solid fa-retweet"></i>
