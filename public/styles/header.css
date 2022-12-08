@@ -1,4 +1,4 @@
-body > header {
+.profile {
   display: flex;
   height: 400px;
   width: 100%;
@@ -10,3 +10,10 @@ body > header {
   background-image: url(http://www.transparenttextures.com/patterns/black-scales.png);
 }
 
+.profile > div > img {
+  margin-top: 2em;
+}
+
+.profile > div > h2 {
+  color: white;
+}
