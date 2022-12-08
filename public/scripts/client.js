@@ -44,7 +44,7 @@ const loadTweets = function () {
     url: '/tweets',
     dataType: 'JSON'
   })
-    .then((tweet) => renderTweets(tweet))
+    .then((tweet) => renderTweets(tweet.reverse()))
     .catch((err) => { console.log(err) })
 };
 
@@ -56,11 +56,11 @@ $(document).ready(function () {
     event.preventDefault();
     console.log('You clicked the TWEET button!');
 
-    if (!$(this).children('textarea').val()) {
+    if (!$('#tweet-text').val()) {
       return alert('You cannot tweet nothing!')
     }
 
-    if ($(this).children('textarea').val().length > 140) {
+    if ($('#tweet-text').val().length > 140) {
       return alert('Tweet exceeds the maximum count!');
     }
 
@@ -70,7 +70,11 @@ $(document).ready(function () {
       data: $(this).serialize()
     })
       .then(() => {
-        console.log('Success! Correct handler request made!');
+        loadTweets();
+        //clear tweet textbox
+        $('#tweet-text').val('');
+        //resets counter
+        $('.counter').text(140);
       })
       .catch((err) => {
         console.log(err);
