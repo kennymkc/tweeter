@@ -7,13 +7,15 @@
 
 //takes in tweet object returning a tweet<article> element
 
-const escape = function (str) {
+const escape = function(str) {
   let div = document.createElement("div");
+  // eslint-disable-next-line no-undef
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
-const createTweetElement = function (tweets) {
+/*eslint-disable */
+const createTweetElement = function(tweets) {
   let $tweet = `
   <article class="tweet">
     <header>
@@ -38,9 +40,10 @@ const createTweetElement = function (tweets) {
   `;
   return $tweet;
 };
+/*eslint-enable */
 
 //takes in array of tweet objects & appends to #tweet-container
-const renderTweets = function (tweets) {
+const renderTweets = function(tweets) {
   for (const tweet of tweets) {
     const singleTweet = createTweetElement(tweet);
     $('#tweet-container').prepend(singleTweet);
@@ -54,12 +57,14 @@ const loadTweets = function () {
     dataType: 'JSON'
   })
     .then((tweet) => renderTweets(tweet))
-    .catch((err) => { console.log(err) })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 loadTweets();
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   $('#submit-tweet').submit(function(event) {
     event.preventDefault();
@@ -87,7 +92,9 @@ $(document).ready(function () {
         })
           /*use renderTweets to get last obj in array and wrapped it in [] b/c renderTweets takes in an array before posting */
           .then((tweet) => renderTweets([tweet[tweet.length - 1]]))
-          .catch((err) => { console.log(err) })
+          .catch((err) => {
+            console.log(err);
+          });
         //clear tweet textbox
         $('#tweet-text').val('');
         //resets counter
@@ -97,7 +104,7 @@ $(document).ready(function () {
       })
       .catch((err) => {
         console.log(err);
-    })
+      });
       
   });
 
